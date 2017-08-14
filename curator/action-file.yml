@@ -3,7 +3,7 @@ actions:
     action: delete_indices
     description: "delete indices older than 3 days"
     options:
-      continue_if_exception: False
+      ignore_empty_list: True
     filters:
     - filtertype: age
       source: creation_date
