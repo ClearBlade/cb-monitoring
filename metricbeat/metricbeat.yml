@@ -1,0 +1,27 @@
+metricbeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+
+metricbeat.modules:
+- module: system
+  metricsets:
+    - core
+    - cpu
+    - diskio
+    - filesystem
+    - fsstat
+    - load
+    - memory
+    - network
+    - process
+  enabled: true
+  period: 30s
+  cpu.metrics: ["percentages"]
+  core.metrics: ["percentages"]
+- module: docker
+  metricsets: ["container","info","cpu","diskio","healthcheck","image","network","memory"]
+  hosts: ["unix:///var/run/docker.sock"]
+  period: 30s
+
+output.logstash:
+  hosts: '${LOGSTASH_HOSTS}'

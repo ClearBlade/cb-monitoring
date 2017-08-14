@@ -1,0 +1,4 @@
+client:
+  hosts:
+    - ${ELASTICSEARCH_ADDRESS}
+  port: ${ELASTICSEARCH_PORT}
