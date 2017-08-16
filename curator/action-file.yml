@@ -1,7 +1,7 @@
 actions:
   1:
     action: delete_indices
-    description: "delete indices older than 3 days"
+    description: "delete indices older than 10 days"
     options:
       ignore_empty_list: True
     filters:
