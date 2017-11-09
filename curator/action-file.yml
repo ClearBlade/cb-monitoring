@@ -12,3 +12,7 @@ actions:
       unit_count: 10
     - filtertype: kibana
       exclude: True
+    - filtertype: pattern
+      kind: prefix
+      value: elastalert
+      exclude: True
