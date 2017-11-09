@@ -1,0 +1,16 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - ${CB_CONTAINER_LOG_PATH}
+  tags: ["cb_filebeat"]
+
+processors:
+  - add_cloud_metadata:
+  - decode_json_fields:
+      fields: ["message"]
+      target: ""
+
+output.logstash:
+  hosts: '${LOGSTASH_HOSTS}'
+  ssl:
+    certificate_authorities: ["/etc/ssl/logstash.crt"]
