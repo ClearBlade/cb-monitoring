@@ -1,7 +1,7 @@
 actions:
   1:
     action: delete_indices
-    description: "delete indices older than 10 days"
+    description: "delete indices older than 30 days"
     options:
       ignore_empty_list: True
     filters:
@@ -9,7 +9,7 @@ actions:
       source: creation_date
       direction: older
       unit: days
-      unit_count: 10
+      unit_count: 30
     - filtertype: kibana
       exclude: True
     - filtertype: pattern
