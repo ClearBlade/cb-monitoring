@@ -3,3 +3,6 @@ client:
     - ${ELASTICSEARCH_ADDRESS}
   port: ${ELASTICSEARCH_PORT}
   http_auth: ${ELASTICSEARCH_BASIC_AUTH}
+
+logging:
+  loglevel: DEBUG
