@@ -1,7 +1,51 @@
 actions:
   1:
+    action: snapshot
+    description: "backs up filebeat indices older than 5 days"
+    options:
+      repository: elk_backups
+      name: '%Y.%m.%d-filebeat'
+      ignore_unavailable: False
+      include_global_state: True
+      partial: False
+      wait_for_completion: True
+      skip_repo_fs_check: False
+      disable_action: True
+      ignore_empty_list: True
+    filters:
+    - filtertype: age
+      source: creation_date
+      direction: older
+      unit: days
+      unit_count: 5
+    - filtertype: pattern
+      kind: prefix
+      value: filebeat
+  2:
+    action: snapshot
+    description: "backs up metricbeat indices older than 5 days"
+    options:
+      repository: elk_backups
+      name: '%Y.%m.%d-metricbeat'
+      ignore_unavailable: False
+      include_global_state: True
+      partial: False
+      wait_for_completion: True
+      skip_repo_fs_check: False
+      disable_action: True
+      ignore_empty_list: True
+    filters:
+    - filtertype: age
+      source: creation_date
+      direction: older
+      unit: days
+      unit_count: 5
+    - filtertype: pattern
+      kind: prefix
+      value: metricbeat
+  3:
     action: delete_indices
-    description: "delete indices older than 30 days"
+    description: "delete indices older than 7 days"
     options:
       ignore_empty_list: True
     filters:
@@ -9,7 +53,7 @@ actions:
       source: creation_date
       direction: older
       unit: days
-      unit_count: 30
+      unit_count: 7
     - filtertype: kibana
       exclude: True
     - filtertype: pattern
