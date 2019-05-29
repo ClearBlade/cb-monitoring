@@ -14,3 +14,10 @@ output.logstash:
   hosts: '${LOGSTASH_HOSTS}'
   ssl:
     certificate_authorities: ["/etc/ssl/logstash.crt"]
+
+queue.spool:
+  file:
+    path: "${path.data}/spool.dat"
+    size: 10MiB
+  write:
+    flush.timeout: 30s
