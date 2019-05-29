@@ -18,6 +18,6 @@ output.logstash:
 queue.spool:
   file:
     path: "${path.data}/spool.dat"
-    size: 10MiB
+    size: 32MiB
   write:
     flush.timeout: 30s
