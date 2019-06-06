@@ -3,6 +3,7 @@ filebeat.prospectors:
   paths:
     - ${CB_CONTAINER_LOG_PATH}
   tags: ["cb_filebeat"]
+  clean_*: 24h
 
 processors:
   - add_cloud_metadata:
@@ -14,3 +15,6 @@ output.logstash:
   hosts: '${LOGSTASH_HOSTS}'
   ssl:
     certificate_authorities: ["/etc/ssl/logstash.crt"]
+
+filebeat.inputs:
+  scan_frequency: 60s
