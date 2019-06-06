@@ -3,6 +3,7 @@ filebeat.prospectors:
   paths:
     - ${CB_CONTAINER_LOG_PATH}
   tags: ["cb_filebeat"]
+  clean_*: 24h
 
 processors:
   - add_cloud_metadata:
@@ -15,9 +16,5 @@ output.logstash:
   ssl:
     certificate_authorities: ["/etc/ssl/logstash.crt"]
 
-queue.spool:
-  file:
-    path: "${path.data}/spool.dat"
-    size: 32MiB
-  write:
-    flush.timeout: 30s
+filebeat.inputs:
+  scan_frequency: 60s
